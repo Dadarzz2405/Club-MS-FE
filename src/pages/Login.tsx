@@ -41,11 +41,15 @@ export default function Login() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md animate-fade-in">
         <CardHeader className="text-center">
-          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-primary text-primary-foreground font-display font-bold text-2xl">
-            R
+          <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-2xl bg-white shadow-md border border-border">
+            <img
+              src="/logo.png"
+              alt="Islamic Leadership Organization - GDA"
+              className="h-20 w-20 object-contain"
+            />
           </div>
-          <CardTitle className="text-2xl font-display">Welcome Back</CardTitle>
-          <CardDescription>Sign in to Rohis Management System</CardDescription>
+          <CardTitle className="text-xl font-display">Islamic Leadership Organization</CardTitle>
+          <CardDescription className="text-xs">Global Darussalam Academy · Management System</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">

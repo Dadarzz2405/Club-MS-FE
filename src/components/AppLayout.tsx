@@ -52,14 +52,18 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
       >
         {/* Logo */}
         <div className="flex items-center gap-3 px-5 py-5 border-b border-sidebar-border">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-display font-bold text-lg">
-            R
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/10 shrink-0">
+            <img
+              src="/logo.png"
+              alt="ILO GDA Logo"
+              className="h-9 w-9 object-contain"
+            />
           </div>
-          <div>
-            <h1 className="font-display text-base font-bold text-sidebar-primary-foreground">Rohis MS</h1>
-            <p className="text-xs text-sidebar-foreground/60">Management System</p>
+          <div className="min-w-0">
+            <h1 className="font-display text-xs font-bold text-sidebar-primary-foreground leading-tight">Islamic Leadership Org</h1>
+            <p className="text-[10px] text-sidebar-foreground/60 truncate">Global Darussalam Academy</p>
           </div>
-          <button className="ml-auto lg:hidden" onClick={() => setSidebarOpen(false)}>
+          <button className="ml-auto lg:hidden shrink-0" onClick={() => setSidebarOpen(false)}>
             <X className="h-5 w-5" />
           </button>
         </div>
