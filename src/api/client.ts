@@ -11,6 +11,18 @@ class ApiClient {
     this.baseUrl = baseUrl;
   }
 
+  getToken(): string | null {
+    return localStorage.getItem("auth_token");
+  }
+
+  setToken(token: string) {
+    localStorage.setItem("auth_token", token);
+  }
+
+  clearToken() {
+    localStorage.removeItem("auth_token");
+  }
+
   private buildUrl(path: string, params?: Record<string, string>): string {
     const url = new URL(path, this.baseUrl || window.location.origin);
     if (params) {
@@ -24,24 +36,23 @@ class ApiClient {
   async request<T>(path: string, options: RequestOptions = {}): Promise<T> {
     const { params, ...fetchOptions } = options;
     const url = this.buildUrl(path, params);
+    const token = this.getToken();
 
     const res = await fetch(url, {
       ...fetchOptions,
-      credentials: "include",
       headers: {
         ...(fetchOptions.body instanceof FormData
           ? {}
           : { "Content-Type": "application/json" }),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...fetchOptions.headers,
       },
     });
 
-    // Handle binary responses (DOCX export)
     const contentType = res.headers.get("content-type") || "";
     if (contentType.includes("application/vnd.openxmlformats")) {
       if (!res.ok) throw new Error("Export failed");
-      const blob = await res.blob();
-      return blob as unknown as T;
+      return await res.blob() as unknown as T;
     }
 
     const data = await res.json();

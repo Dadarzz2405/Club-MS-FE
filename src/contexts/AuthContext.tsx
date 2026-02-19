@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from "react";
 import type { User } from "@/types";
 import { authApi } from "@/api/auth";
-import { ApiError } from "@/api/client";
+import { api, ApiError } from "@/api/client";
 
 interface AuthContextType {
   user: User | null;
@@ -20,11 +20,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   const refreshUser = useCallback(async () => {
+    if (!api.getToken()) {
+      setUser(null);
+      return;
+    }
     try {
       const res = await authApi.me();
       setUser(res.user);
     } catch {
       setUser(null);
+      api.clearToken();
     }
   }, []);
 
@@ -34,6 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     const res = await authApi.login(email, password);
+    api.setToken(res.token);
     setUser(res.user);
     return { mustChangePassword: res.must_change_password };
   };
@@ -44,6 +50,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       // ignore
     }
+    api.clearToken();
     setUser(null);
   };
 
@@ -56,7 +63,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   );
 }
-
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used within AuthProvider");

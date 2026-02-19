@@ -3,6 +3,7 @@ import type { User } from "@/types";
 
 interface LoginResponse {
   success: boolean;
+  token: string;       // ← add this
   user: User;
   must_change_password: boolean;
 }
