@@ -60,7 +60,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             />
           </div>
           <div className="min-w-0">
-            <h1 className="font-display text-xs font-bold text-sidebar-primary-foreground leading-tight">Islamic Leadership Org</h1>
+            <h1 className="font-display text-xs font-bold text-sidebar-primary-foreground leading-tight">Darsanian Rohis</h1>
             <p className="text-[10px] text-sidebar-foreground/60 truncate">Global Darussalam Academy</p>
           </div>
           <button className="ml-auto lg:hidden shrink-0" onClick={() => setSidebarOpen(false)}>
