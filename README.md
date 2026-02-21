@@ -424,4 +424,4 @@ Build with `npm run build`, then serve the `dist/` folder as a static site. Make
 
 ## License
 
-MIT © 2026 Darsanians-Rohis
+MIT © 2026 Dadarzz
