@@ -3,9 +3,10 @@
 The React frontend for ManageSpace. A clean, role-aware dashboard UI for managing members, sessions, attendance, meeting notes, duty rosters, and an AI assistant chat widget. Built to pair with the ManageSpace Flask backend.
 
 > This frontend was originally built for a school Islamic organization (Rohis/Darsanian GDA). The organization-specific content is isolated to a small set of files and strings — see [Adapting for Your Organization](#adapting-for-your-organization).
+# Documentation
+https://github.com/Dadarzz2405/Club-MS-FE/blob/main/DOCUMENTATION.md
 
 ---
-
 ## Table of Contents
 
 - [Tech Stack](#tech-stack)
